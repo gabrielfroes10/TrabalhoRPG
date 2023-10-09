@@ -6,6 +6,8 @@ public class Inimigo {
     public int nivel;
     public int energia;
     public List<Habilidade> habilidadesDeCombate;
+    private int posicaoX;
+    private int posicaoY;
 
     public Inimigo(String nome, int nivel, int energia) {
         this.nome = nome;
@@ -31,6 +33,21 @@ public class Inimigo {
 
     public List<Habilidade> getHabilidadesDeCombate() {
         return habilidadesDeCombate;
+    }
+    public void setPosicaoX(int posicaoX) {
+        this.posicaoX = posicaoX;
+    }
+
+    public int getPosicaoX() {
+        return posicaoX;
+    }
+
+    public void setPosicaoY(int posicaoY) {
+        this.posicaoY = posicaoY;
+    }
+
+    public int getPosicaoY() {
+        return posicaoY;
     }
 
     public void atacar(Personagem personagem) {

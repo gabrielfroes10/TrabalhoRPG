@@ -12,13 +12,15 @@ public class Personagem {
     public List<Habilidade> habilidades;
     public List<Item> itens;
 
-    public Personagem(String nome, int nivel, int saude, int energia) {
+
+
+    public Personagem(String nome) {
         this.nome = nome;
-        this.nivel = nivel;
-        this.saude = saude;
-        this.energia = energia;
+        this.nivel = 1;
+        this.saude = 100;
+        this.energia = 100;
         this.itens = new ArrayList<>();
-        this.posicaoX = 0; // Defina a posição inicial como 0
+        this.posicaoX = 0;
         this.posicaoY = 0;
 
     }
@@ -114,23 +116,31 @@ public class Personagem {
     public void usarItem(Item item){
         item.usar();
     }
-    // Métodos de movimento do personagem
-    public  void moverPersonagem(Personagem personagem, MundoVirtual mundo, int deltaX, int deltaY) {
-        int novaPosicaoX = personagem.getPosicaoX() + deltaX;
-        int novaPosicaoY = personagem.getPosicaoY() + deltaY;
 
-        // Verifique se a nova posição está dentro dos limites do mapa
-        if (novaPosicaoX >= 0 && novaPosicaoX < mundo.getMapaDoMundo().length &&
-                novaPosicaoY >= 0 && novaPosicaoY < mundo.getMapaDoMundo()[0].length) {
-            // Atualize a posição do personagem
-            personagem.setPosicaoX(novaPosicaoX);
-            personagem.setPosicaoY(novaPosicaoY);
-            System.out.println("Você se moveu para (" + novaPosicaoX + ", " + novaPosicaoY + ").");
+    public void moverPersonagem(int deltaX, int deltaY) {
+        int novaPosX = posicaoX + deltaX;
+        int novaPosY = posicaoY + deltaY;
+
+        // Verificar se a nova posição está dentro dos limites aceitáveis
+        if (novaPosX >= 0 && novaPosY >= 0) {
+            // Atualizar a posição do personagem
+            posicaoX = novaPosX;
+            posicaoY = novaPosY;
+            System.out.println("Personagem movido para (X = " + posicaoX + ", Y = " + posicaoY + ")");
         } else {
-            System.out.println("Movimento inválido. Você não pode sair do mapa.");
+            System.out.println("Alerta: Você não pode sair para uma posição fora dos limites!");
         }
     }
-}
+
+    }
+
+
+
+
+
+
+
+
 
 
 

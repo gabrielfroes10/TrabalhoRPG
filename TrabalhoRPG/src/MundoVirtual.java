@@ -1,59 +1,48 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MundoVirtual {
-    private char[][] mapaDoMundo;
     private List<Personagem> personagens;
     private List<Missao> missoesAtivas;
     private List<Inimigo> inimigos;
+    private int largura; // Largura máxima do mapa
+    private int altura;  // Altura máxima do mapa
 
     public MundoVirtual(int largura, int altura) {
-        this.mapaDoMundo = new char[largura][altura];
+        this.largura = Math.min(10, largura);
+        this.altura = Math.min(10, altura);
         this.personagens = new ArrayList<>();
         this.missoesAtivas = new ArrayList<>();
         this.inimigos = new ArrayList<>();
-
-        for (int i = 0; i < largura; i++) {
-            for (int j = 0; j < altura; j++) {
-                mapaDoMundo[i][j] = '.';
-            }
-        }
-    }
-
-    public void gerarEncontroComInimigo(int x, int y) {
-        if (x >= 0 && x < mapaDoMundo.length && y >= 0 && y < mapaDoMundo[0].length) {
-            Inimigo novoInimigo = new Inimigo("Inimigo Aleatório", 10, 100);
-            inimigos.add(novoInimigo);
-            mapaDoMundo[x][y] = 'I';
-
-            System.out.println("Você encontrou um inimigo em (" + x + ", " + y + ")!");
-        } else {
-            System.out.println("Coordenadas inválidas. Não é possível gerar um encontro com inimigo.");
-        }
-    }
-
-    public char[][] getMapaDoMundo() {
-        return mapaDoMundo;
     }
 
     public List<Inimigo> getInimigos() {
         return inimigos;
     }
-    // Método para imprimir o mapa com a posição do personagem
-    public  void imprimirMapa(char[][] mapa, int posicaoX, int posicaoY) {
-        for (int i = 0; i < mapa.length; i++) {
-            for (int j = 0; j < mapa[0].length; j++) {
-                if (i == posicaoY && j == posicaoX) {
-                    System.out.print("P "); // Mostra a posição do personagem com "P"
-                } else {
-                    System.out.print(mapa[i][j] + " ");
-                }
-            }
-            System.out.println();
+
+    public void iniciarMissao(Personagem personagem) {
+        // Criar a Missão 1
+        Missao missao1 = new Missao("Missão 1", "Derrote 3 inimigos", "Derrote 3 inimigos aleatórios no mapa", largura, altura, 3);
+
+        // Gerar 3 inimigos aleatórios no mapa
+        Random random = new Random();
+        for (int i = 0; i < 3; i++) {
+            int x = random.nextInt(largura);
+            int y = random.nextInt(altura);
+
+            Inimigo inimigo = new Inimigo("Inimigo Aleatório", 10, 100);
+            inimigo.setPosicaoX(x);
+            inimigo.setPosicaoY(y);
+
+            inimigos.add(inimigo);
+
+            System.out.println("Inimigo " + inimigo.getNome() + " gerado em (" + x + ", " + y + ")");
         }
+
+        // Adicionar a Missão 1 à lista de missões ativas
+        missoesAtivas.add(missao1);
+
+
     }
-
-
-
-
 }

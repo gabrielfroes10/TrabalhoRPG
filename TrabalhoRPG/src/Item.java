@@ -4,6 +4,8 @@ public class Item {
     public String descricao;
     public String tipo;
     public String efeitos;
+    public int dano;
+    public int efeito;
 
     public Item(String nome, String descricao, String tipo, String efeitos) {
         this.nome = nome;
@@ -28,7 +30,23 @@ public class Item {
         return efeitos;
     }
 
+    public int getDano() {
+        return dano;
+    }
+
+    public void setDano(int dano) {
+        this.dano = dano;
+    }
+
+    public int getEfeito() {
+        return efeito;
+    }
+
+    public void setEfeito(int efeito) {
+        this.efeito = efeito;
+    }
+
     public void usar() {
-        System.out.println("Você usou o item "+ this.nome + " e causou o efeito " + this.efeitos );
+        System.out.println("Você usou o item " + this.nome + " e causou o efeito " + this.efeitos);
     }
 }

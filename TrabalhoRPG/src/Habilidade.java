@@ -2,10 +2,12 @@ public class Habilidade {
     public String nome;
     public String descricao;
     public int custoEnergia;
-    public Habilidade(String nome, String descricao, int custoEnergia) {
+    public int dano;
+    public Habilidade(String nome, String descricao, int custoEnergia, int dano) {
         this.nome = nome;
         this.descricao = descricao;
         this.custoEnergia = custoEnergia;
+        this.dano = dano;
     }
 
     public String getNome() {
